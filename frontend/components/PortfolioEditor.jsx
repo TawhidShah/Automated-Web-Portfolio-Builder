@@ -5,12 +5,13 @@ import { useEffect, useRef, useState } from "react";
 
 const PortfolioEditor = ({ portfolio, mode, onCancel }) => {
   const iframeRef = useRef(null);
+  const livePreviewUrl = window.location.origin + "/live-preview";
   const [portfolioData, setPortfolioData] = useState(portfolio);
 
   useEffect(() => {
     const sendDataToIframe = () => {
       if (iframeRef.current && portfolioData) {
-        iframeRef.current.contentWindow.postMessage({ portfolioData }, "*");
+        iframeRef.current.contentWindow.postMessage({ portfolioData }, livePreviewUrl);
       }
     };
 
@@ -33,7 +34,7 @@ const PortfolioEditor = ({ portfolio, mode, onCancel }) => {
       />
       <iframe
         ref={iframeRef}
-        src="http://localhost:3000/live-preview"
+        src={livePreviewUrl}
         className="hidden max-h-[88vh] min-w-[50%] flex-1 rounded-md border xl:block"
       ></iframe>
     </div>
