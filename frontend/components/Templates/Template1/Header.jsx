@@ -14,7 +14,7 @@ const Header = ({ portfolio }) => {
     { id: "education", label: "Education", exists: education?.length > 0 },
     { id: "experience", label: "Experience", exists: experience?.length > 0 },
     { id: "skills", label: "Skills", exists: skills?.technical?.length > 0 || skills?.soft?.length > 0 },
-    { id: "projects", label: "Projects", exists: projects.length > 0 },
+    { id: "projects", label: "Projects", exists: projects?.length > 0 },
     { id: "certifications", label: "Certifications", exists: certifications?.length > 0 },
   ];
 
