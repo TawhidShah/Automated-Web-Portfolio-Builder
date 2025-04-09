@@ -7,7 +7,7 @@ import {
   SkillsSection,
   ProjectsSection,
   CertificationsSection,
-} from "@/components/Templates/Template1/";
+} from "@/components/Templates/Template1/index";
 
 const Template1 = ({ portfolio }) => {
   const { personal, professional_summary, education, experience, skills, projects, certifications } = portfolio;
