@@ -6,12 +6,13 @@ import { toast } from "sonner";
 import axios from "axios";
 import ConfirmModal from "@/components/ConfirmModal";
 import { Button } from "@/components/ui/button";
-import { Eye, Pencil, Trash2, Copy, Lock, Unlock } from "lucide-react";
+import { Eye, Pencil, Trash2, Copy, Lock, Unlock, LoaderCircle } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 
 const DashboardClient = ({ portfolio }) => {
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
   const [isPrivate, setIsPrivate] = useState(portfolio.is_private);
+  const [togglingPrivacy, setTogglingPrivacy] = useState(false);
 
   const { user } = useUser();
 
@@ -31,6 +32,9 @@ const DashboardClient = ({ portfolio }) => {
   };
 
   const togglePrivacy = async () => {
+    if (togglingPrivacy) return;
+
+    setTogglingPrivacy(true);
     try {
       await axios.put("/api/portfolio", {
         is_private: !isPrivate,
@@ -39,6 +43,8 @@ const DashboardClient = ({ portfolio }) => {
       toast.success(`Portfolio is now ${isPrivate ? "public" : "private"}`);
     } catch (error) {
       toast.error("Error updating portfolio privacy, please try again.");
+    } finally {
+      setTogglingPrivacy(false);
     }
   };
 
@@ -83,17 +89,24 @@ const DashboardClient = ({ portfolio }) => {
         </div>
 
         <div className="flex w-full items-center justify-end gap-2 sm:w-auto sm:gap-4">
-          <Button variant="outline" onClick={togglePrivacy} className="flex flex-1 items-center gap-2 sm:flex-none">
-            {isPrivate ? (
-              <>
-                <Lock className="h-4 w-4" />
-                <span className="whitespace-nowrap">Make Public</span>
-              </>
+          <Button
+            variant="outline"
+            onClick={togglePrivacy}
+            className="flex flex-1 items-center gap-2 sm:flex-none"
+            disabled={togglingPrivacy}
+          >
+            {togglingPrivacy ? (
+              <LoaderCircle className="h-4 w-4 animate-spin" />
+            ) : isPrivate ? (
+              <Lock className="h-4 w-4" />
             ) : (
-              <>
-                <Unlock className="h-4 w-4" />
-                <span className="whitespace-nowrap">Make Private</span>
-              </>
+              <Unlock className="h-4 w-4" />
+            )}
+
+            {isPrivate ? (
+              <span className="whitespace-nowrap">Make Public</span>
+            ) : (
+              <span className="whitespace-nowrap">Make Private</span>
             )}
           </Button>
 
