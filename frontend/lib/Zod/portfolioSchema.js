@@ -87,10 +87,14 @@ export const PortfolioSchema = z.object({
     .optional()
     .default([]),
 
-  skills: z.object({
-    technical: z.array(z.string()).nullable().optional().default([]),
-    soft: z.array(z.string()).nullable().optional().default([]),
-  }),
+  skills: z
+    .object({
+      technical: z.array(z.string()).nullable().optional().default([]),
+      soft: z.array(z.string()).nullable().optional().default([]),
+    })
+    .nullable()
+    .optional()
+    .default({ technical: [], soft: [] }),
 
   projects: z
     .array(
