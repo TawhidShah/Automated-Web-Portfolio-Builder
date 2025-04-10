@@ -72,7 +72,7 @@ const SignUpForm = () => {
 
     try {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
-        verificationCode,
+        code: verificationCode,
       });
       if (completeSignUp.status !== "complete") {
         toast.error("Sign up failed. Please try again.");
