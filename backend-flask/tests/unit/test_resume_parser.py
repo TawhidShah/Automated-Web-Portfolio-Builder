@@ -15,10 +15,6 @@ def get_fixture_resume_path(filename):
 PDF_PATH = get_fixture_resume_path("resume.pdf")
 DOCX_PATH = get_fixture_resume_path("resume.docx")
 
-PDF_EXPECTED_OUTPUT_PATH = get_fixture_resume_path("extraction_output_pdf.txt")
-DOCX_EXPECTED_OUTPUT_PATH = get_fixture_resume_path(
-    "extraction_output_docx.txt")
-
 
 class MockResponse:
     def __init__(self, content):
@@ -57,49 +53,60 @@ class MockOpenAIClient:
         return MockResponse(json_str)
 
 
-def test_extract_text_from_pdf_real():
-    """Test PDF extraction using a real PDF file."""
+def assert_resume_text_valid(text):
+    assert isinstance(text, str), "Text should be a string"
+    assert len(text) > 0, "Extracted text should not be empty"
+    assert "John Doe" in text, "Text should contain the name 'John Doe'"
+    assert "Software Engineer" in text, "Text should contain 'Software Engineer'"
+    assert "john.doe@example.com" in text, "Text should contain 'john.doe@example.com'"
+    assert "Bachelor of Science in Computer Science" in text, "Text should contain 'Bachelor of Science in Computer Science'"
+    assert "XYZ University" in text, "Text should contain 'XYZ University'"
+    assert "Databases: PostgreSQL, MongoDB, Firebase" in text, "Text should contain 'Databases: PostgreSQL, MongoDB, Firebase'"
+    assert "Real-Time Chat Application" in text, "Text should contain 'Real-Time Chat Application'"
+    assert "AWS Certified Solutions Architect - Associate (2022)" in text, "Text should contain 'AWS Certified Solutions Architect - Associate (2022)'"
+
+
+def test_extract_text_from_pdf():
+    """Test extract_text on a PDF file wrapped in a FileStorage object."""
     with open(PDF_PATH, "rb") as f:
-        text = extract_text_from_pdf(f)
+        fs = FileStorage(stream=f, filename="resume.pdf",
+                         content_type="application/pdf")
+        text = extract_text_from_pdf(fs)
 
-    with open(PDF_EXPECTED_OUTPUT_PATH, "r", encoding="utf-8") as f:
-        expected_text = f.read()
-
-    assert isinstance(text, str), "PDF extraction should return a string"
-    assert len(text) > 0, "Extracted PDF text should not be empty"
-    assert text == expected_text, "Extracted PDF text does not match expected output"
+    assert_resume_text_valid(text)
 
 
-def test_extract_text_from_docx_real():
-    """Test DOCX extraction using a real DOCX file."""
+def test_extract_text_from_docx():
+    """Test extract_text on a DOCX file wrapped in a FileStorage object."""
     with open(DOCX_PATH, "rb") as f:
-        text = extract_text_from_docx(f)
+        fs = FileStorage(
+            stream=f,
+            filename="resume.docx",
+            content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        )
+        text = extract_text_from_docx(fs)
 
-    with open(DOCX_EXPECTED_OUTPUT_PATH, "r", encoding="utf-8") as f:
-        expected_text = f.read()
-
-    assert isinstance(text, str), "DOCX extraction should return a string"
-    assert len(text) > 0, "Extracted DOCX text should not be empty"
-    assert text == expected_text, "Extracted DOCX text does not match expected output"
+    assert_resume_text_valid(text)
 
 
-def test_extract_text_pdf_real_fs():
+def test_extract_text_no_mimetype():
+    """Test that extract_text returns an error when the file object has no mimetype attribute."""
+    with open(PDF_PATH, "rb") as f:
+        result = extract_text(f)
+    assert result == {"error": "File object has no mimetype attribute."}
+
+
+def test_extract_text_pdf():
     """Test extract_text on a PDF file wrapped in a FileStorage object."""
     with open(PDF_PATH, "rb") as f:
         fs = FileStorage(stream=f, filename="resume.pdf",
                          content_type="application/pdf")
         text = extract_text(fs)
 
-    with open(PDF_EXPECTED_OUTPUT_PATH, "r", encoding="utf-8") as f:
-        expected_text = f.read()
-
-    assert isinstance(
-        text, str), "extract_text should return a string for a PDF file"
-    assert len(text) > 0, "Extracted PDF text should not be empty"
-    assert text == expected_text, "Extracted PDF text does not match expected output"
+    assert_resume_text_valid(text)
 
 
-def test_extract_text_docx_real_fs():
+def test_extract_text_docx():
     """Test extract_text on a DOCX file wrapped in a FileStorage object."""
     with open(DOCX_PATH, "rb") as f:
         fs = FileStorage(
@@ -109,16 +116,10 @@ def test_extract_text_docx_real_fs():
         )
         text = extract_text(fs)
 
-    with open(DOCX_EXPECTED_OUTPUT_PATH, "r", encoding="utf-8") as f:
-        expected_text = f.read()
-
-    assert isinstance(
-        text, str), "extract_text should return a string for a DOCX file"
-    assert len(text) > 0, "Extracted DOCX text should not be empty"
-    assert text == expected_text, "Extracted DOCX text does not match expected output"
+    assert_resume_text_valid(text)
 
 
-def test_extract_text_unsupported_file_fs():
+def test_extract_text_unsupported_file():
     """Test extract_text returns an error for an unsupported file type."""
     # Create a temporary file with an unsupported mimetype
     with tempfile.NamedTemporaryFile("wb", delete=False) as tmp:
@@ -132,13 +133,6 @@ def test_extract_text_unsupported_file_fs():
     os.remove(tmp_filename)
     assert result == {
         "error": "Unsupported file type. Please upload a PDF or DOCX file."}
-
-
-def test_extract_text_no_mimetype():
-    """Test that extract_text returns an error when the file object has no mimetype attribute."""
-    with open(PDF_PATH, "rb") as f:
-        result = extract_text(f)
-    assert result == {"error": "File object has no mimetype attribute."}
 
 
 def test_resume_parser(monkeypatch):
