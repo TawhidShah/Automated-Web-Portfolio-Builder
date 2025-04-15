@@ -14,6 +14,8 @@ const LivePreview = () => {
       return notFound();
     }
 
+    window.parent.postMessage({ status: "ready" }, "*");
+
     const handleMessage = (event) => {
       if (event.data?.portfolioData) {
         setPortfolio(event.data.portfolioData);
