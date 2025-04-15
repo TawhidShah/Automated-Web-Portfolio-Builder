@@ -5,8 +5,14 @@ import { useEffect, useRef, useState } from "react";
 
 const PortfolioEditor = ({ portfolio, mode, onCancel }) => {
   const iframeRef = useRef(null);
-  const livePreviewUrl = window.location.origin + "/live-preview";
+  const [livePreviewUrl, setLivePreviewUrl] = useState(null);
   const [portfolioData, setPortfolioData] = useState(portfolio);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLivePreviewUrl(window.location.origin + "/live-preview");
+    }
+  }, []);
 
   useEffect(() => {
     const sendDataToIframe = () => {
