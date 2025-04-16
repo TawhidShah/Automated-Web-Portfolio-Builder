@@ -31,7 +31,7 @@ const PortfolioEditor = ({ portfolio, mode, onCancel }) => {
   }, [iframeReady, portfolioData, livePreviewUrl]);
 
   return (
-    <div className="flex flex-1 gap-4">
+    <div className="flex flex-1 gap-4 p-4">
       <PortfolioForm
         portfolioData={portfolioData}
         setPortfolioData={setPortfolioData}
@@ -42,6 +42,7 @@ const PortfolioEditor = ({ portfolio, mode, onCancel }) => {
         ref={iframeRef}
         src={livePreviewUrl}
         className="hidden max-h-[88vh] min-w-[50%] flex-1 rounded-md border xl:block"
+        title="Live Preview"
       ></iframe>
     </div>
   );

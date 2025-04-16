@@ -32,7 +32,7 @@ const Template2 = ({ portfolio }) => {
         {professional_summary && (
           <section id="professional_summary" className="space-y-4">
             <h2 className="text-2xl font-semibold">Professional Summary</h2>
-            <p className="text-wrap">{professional_summary}</p>
+            <div dangerouslySetInnerHTML={{ __html: professional_summary }}></div>
           </section>
         )}
 

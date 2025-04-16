@@ -5,7 +5,11 @@ import { notFound } from "next/navigation";
 const TemplatePage = async ({ params }) => {
   const { id } = await params;
 
-  const SelectedTemplate = TemplateMappings[id] || notFound;
+  const SelectedTemplate = TemplateMappings[id];
+
+  if (!SelectedTemplate) {
+    return notFound();
+  }
 
   return <SelectedTemplate portfolio={ExamplePortfolio} />;
 };

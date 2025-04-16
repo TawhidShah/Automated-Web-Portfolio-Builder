@@ -62,6 +62,7 @@ const RTEditor = ({ name, setValue, defaultValue }) => {
     <div className="mt-2 flex flex-col rounded-md border p-2">
       <div className="mb-2 flex space-x-2">
         <button
+          aria-label="Toggle Bold"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={`p-2 ${editor.isActive("bold") ? "rounded-md border-2 border-gray-600" : ""}`}
         >
@@ -69,6 +70,7 @@ const RTEditor = ({ name, setValue, defaultValue }) => {
         </button>
 
         <button
+          aria-label="Toggle Italic"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={`p-2 ${editor.isActive("italic") ? "rounded-md border-2 border-gray-600" : ""}`}
         >
@@ -76,6 +78,7 @@ const RTEditor = ({ name, setValue, defaultValue }) => {
         </button>
 
         <button
+          aria-label="Toggle Underline"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={`p-2 ${editor.isActive("underline") ? "rounded-md border-2 border-gray-600" : ""}`}
         >
@@ -87,6 +90,7 @@ const RTEditor = ({ name, setValue, defaultValue }) => {
             <div className="h-5 w-5 rounded-full border" style={{ backgroundColor: color }}></div>
           </button>
           <input
+            aria-label="Color Picker"
             type="color"
             id="colorPicker"
             value={color}

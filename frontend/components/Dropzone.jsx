@@ -32,7 +32,7 @@ const Dropzone = ({ onFileUpload, processing }) => {
               processing ? "cursor-not-allowed opacity-50" : "hover:bg-background-hover",
             )}
           >
-            <input {...getInputProps()} disabled={processing} />
+            <input {...getInputProps()} disabled={processing} aria-label="File upload" />
             {processing ? (
               // <p className="text-gray-500">Processing file...</p>
               <Loader />

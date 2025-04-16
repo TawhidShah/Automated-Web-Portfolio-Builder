@@ -128,7 +128,7 @@ const PortfolioForm = ({ portfolioData, setPortfolioData, onCancel, mode = "crea
           <Button
             onClick={handleSubmit(onSubmit)}
             disabled={isSubmitting}
-            className="hover:bg-blue-600 flex-1 bg-blue-500 text-white"
+            className="flex-1 bg-blue-500 text-white hover:bg-blue-600"
           >
             {mode === "create" ? "Create Portfolio" : "Update Portfolio"}
           </Button>
