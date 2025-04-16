@@ -1,5 +1,14 @@
 import { z } from "zod";
 import { formatUrl } from "@/lib/utils";
+import sanitizeHtml from "sanitize-html";
+
+const sanitizeRichText = (val) =>
+  sanitizeHtml(val || "", {
+    allowedTags: ["strong", "em", "u", "p", "span"],
+    allowedAttributes: {
+      span: ["style"],
+    },
+  });
 
 export const PortfolioSchema = z.object({
   template: z.number().min(1, "Template is required"),
@@ -57,7 +66,7 @@ export const PortfolioSchema = z.object({
     .trim()
     .nullable()
     .optional()
-    .transform((val) => (val?.trim() === "" ? null : val)),
+    .transform((val) => (val?.trim() === "" ? null : sanitizeRichText(val))),
 
   education: z
     .array(
@@ -80,7 +89,7 @@ export const PortfolioSchema = z.object({
         company: z.string().min(1, "Company is required"),
         start_date: z.string().min(1, "Start date is required"),
         end_date: z.string().min(1, "End date is required"),
-        description: z.string().min(1, "Description is required"),
+        description: z.string().min(1, "Description is required").transform(sanitizeRichText),
       }),
     )
     .nullable()
@@ -100,7 +109,7 @@ export const PortfolioSchema = z.object({
     .array(
       z.object({
         name: z.string().min(1, "Project name is required"),
-        description: z.string().min(1, "Description is required"),
+        description: z.string().min(1, "Description is required").transform(sanitizeRichText),
         technologies: z.array(z.string()).nullable().optional().default([]),
         url: z
           .string()
