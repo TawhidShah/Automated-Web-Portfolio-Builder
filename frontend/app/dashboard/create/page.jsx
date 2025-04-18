@@ -1,14 +1,14 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import CreatePortfolioClient from "./CreatePortfolioClient";
-import getPortfolio from "@/lib/getPortfolio";
+import { mongooseConnect } from "@/lib/mongoose";
+import Portfolio from "@/models/Portfolio";
 
 const CreatePortfolioPage = async () => {
+  await mongooseConnect();
   const { username } = await currentUser();
 
-  const existingPortfolio = await getPortfolio(username);
-
-  if (existingPortfolio) {
+  if (await Portfolio.exists({ username })) {
     redirect("/dashboard");
   }
 
