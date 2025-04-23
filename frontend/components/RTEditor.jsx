@@ -13,6 +13,7 @@ import { Color } from "@tiptap/extension-color";
 import { BoldIcon, ItalicIcon, UnderlineIcon } from "lucide-react";
 
 import sanitizeHtml from "sanitize-html";
+import { Button } from "@/components/ui/button";
 
 const DEFAULT_COLOR = "#f8fafc";
 
@@ -61,34 +62,37 @@ const RTEditor = ({ name, setValue, defaultValue }) => {
   return (
     <div className="mt-2 flex flex-col rounded-md border p-2">
       <div className="mb-2 flex space-x-2">
-        <button
+        <Button
+          variant="ghost"
           aria-label="Toggle Bold"
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`p-2 ${editor.isActive("bold") ? "rounded-md border-2 border-gray-600" : ""}`}
+          className={`rounded-md border-2 p-2 ${editor.isActive("bold") ? "border-gray-600" : "border-transparent"}`}
         >
           <BoldIcon />
-        </button>
+        </Button>
 
-        <button
+        <Button
+          variant="ghost"
           aria-label="Toggle Italic"
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`p-2 ${editor.isActive("italic") ? "rounded-md border-2 border-gray-600" : ""}`}
+          className={`rounded-md border-2 p-2 ${editor.isActive("italic") ? "border-gray-600" : "border-transparent"}`}
         >
           <ItalicIcon />
-        </button>
+        </Button>
 
-        <button
+        <Button
+          variant="ghost"
           aria-label="Toggle Underline"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`p-2 ${editor.isActive("underline") ? "rounded-md border-2 border-gray-600" : ""}`}
+          className={`rounded-md border-2 p-2 ${editor.isActive("underline") ? "border-gray-600" : "border-transparent"}`}
         >
           <UnderlineIcon />
-        </button>
+        </Button>
 
         <div className="relative">
-          <button className="flex items-center space-x-2 rounded-md border-2 border-gray-600 p-2">
-            <div className="h-5 w-5 rounded-full border" style={{ backgroundColor: color }}></div>
-          </button>
+          <Button className="flex items-center space-x-2 rounded-md border-2 border-transparent p-2" variant="ghost">
+            <div className="h-6 w-6 rounded-full border" style={{ backgroundColor: color }}></div>
+          </Button>
           <input
             aria-label="Color Picker"
             type="color"
@@ -102,15 +106,15 @@ const RTEditor = ({ name, setValue, defaultValue }) => {
             className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           />
         </div>
-        <button
+        <Button
+          variant="secondary"
           onClick={() => {
             setColor(DEFAULT_COLOR);
             editor.chain().focus().unsetColor().run();
           }}
-          className="rounded-md bg-gray-700 p-2 text-white hover:bg-gray-600"
         >
           Reset Color
-        </button>
+        </Button>
       </div>
       <EditorContent editor={editor} className="rounded-lg border p-2" />
     </div>
