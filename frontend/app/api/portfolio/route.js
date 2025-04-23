@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { mongooseConnect } from "@/lib/mongoose";
 import { currentUser } from "@clerk/nextjs/server";
-import Portfolio from "@/models/Portfolio";
+
+import { mongooseConnect } from "@/lib/mongoose";
 import { PortfolioSchema } from "@/lib/Zod/portfolioSchema";
+import Portfolio from "@/models/Portfolio";
 
 export async function POST(req) {
   try {

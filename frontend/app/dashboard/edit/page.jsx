@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
+
 import EditPortfolioClient from "./EditPortfolioClient";
+
 import getPortfolio from "@/lib/getPortfolio";
 
 const EditPortfolioPage = async () => {

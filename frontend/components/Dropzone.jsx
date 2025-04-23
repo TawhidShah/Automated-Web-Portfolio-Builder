@@ -1,8 +1,10 @@
 "use client";
 import DZ from "react-dropzone";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import Loader from "./Loader";
+
+import Loader from "@/components/Loader";
+
+import { cn } from "@/lib/utils";
 
 const Dropzone = ({ onFileUpload, processing }) => {
   const MAX_FILE_SIZE = 20971520; // 20MB

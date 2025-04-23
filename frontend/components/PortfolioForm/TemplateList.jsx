@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ExternalLink, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { TemplateMappings } from "@/lib/TemplateMappings";
 
+import { TemplateMappings } from "@/lib/TemplateMappings";
 
 const TemplateList = ({ getValues, setValue, errors }) => {
   const [previewTemplate, setPreviewTemplate] = useState(null);

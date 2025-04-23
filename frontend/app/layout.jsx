@@ -1,8 +1,9 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Header from "@/components/Header";
 import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
+
+import Header from "@/components/Header";
 
 export const metadata = {
   title: "Create Next App",

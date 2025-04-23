@@ -1,9 +1,8 @@
 "use client";
 
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import React from "react";
 import { usePathname } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const pathname = usePathname();

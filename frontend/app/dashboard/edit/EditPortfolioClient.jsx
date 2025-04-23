@@ -1,7 +1,8 @@
 "use client";
 
-import PortfolioEditor from "@/components/PortfolioEditor";
 import { useRouter } from "next/navigation";
+
+import PortfolioEditor from "@/components/PortfolioEditor";
 
 const EditPortfolioClient = ({ portfolio }) => {
   const router = useRouter();

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Dropzone from "@/components/Dropzone";
-import PortfolioEditor from "@/components/PortfolioEditor";
 import axios from "axios";
 import { toast } from "sonner";
+
+import Dropzone from "@/components/Dropzone";
+import PortfolioEditor from "@/components/PortfolioEditor";
 
 const CreatePortfolioClient = () => {
   const [resumeData, setResumeData] = useState(null);

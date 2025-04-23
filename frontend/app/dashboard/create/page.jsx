@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
+
 import CreatePortfolioClient from "./CreatePortfolioClient";
+
 import { mongooseConnect } from "@/lib/mongoose";
 import Portfolio from "@/models/Portfolio";
 

@@ -1,5 +1,5 @@
-import Portfolio from "@/models/Portfolio.js";
 import { mongooseConnect } from "@/lib/mongoose.js";
+import Portfolio from "@/models/Portfolio.js";
 
 const getPortfolio = async (username) => {
   await mongooseConnect();

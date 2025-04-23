@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
+
 import getPortfolio from "@/lib/getPortfolio";
 import { TemplateMappings, DefaultTemplate } from "@/lib/TemplateMappings";
-import { currentUser } from "@clerk/nextjs/server";
 
 const PortfolioPage = async ({ params }) => {
   const { username } = await params;

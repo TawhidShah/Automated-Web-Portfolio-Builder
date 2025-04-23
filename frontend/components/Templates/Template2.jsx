@@ -1,7 +1,8 @@
+import Link from "next/link";
+
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 
 const Template2 = ({ portfolio }) => {
   const { personal, professional_summary, education, experience, skills, projects, certifications } = portfolio;

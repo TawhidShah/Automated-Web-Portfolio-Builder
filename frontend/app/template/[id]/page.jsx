@@ -1,6 +1,7 @@
-import { TemplateMappings } from "@/lib/TemplateMappings";
-import ExamplePortfolio from "@/lib/ExamplePortfolio";
 import { notFound } from "next/navigation";
+
+import ExamplePortfolio from "@/lib/ExamplePortfolio";
+import { TemplateMappings } from "@/lib/TemplateMappings";
 
 const TemplatePage = async ({ params }) => {
   const { id } = await params;

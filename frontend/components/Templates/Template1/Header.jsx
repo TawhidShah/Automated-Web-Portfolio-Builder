@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+
 import { getInitials } from "@/lib/utils";
 
 const Header = ({ portfolio }) => {

@@ -1,9 +1,11 @@
 "use client";
 
-import Loader from "@/components/Loader";
 import { useEffect, useState } from "react";
-import { TemplateMappings, DefaultTemplate } from "@/lib/TemplateMappings";
 import { notFound } from "next/navigation";
+
+import Loader from "@/components/Loader";
+
+import { TemplateMappings, DefaultTemplate } from "@/lib/TemplateMappings";
 
 const LivePreview = () => {
   const [portfolio, setPortfolio] = useState(null);

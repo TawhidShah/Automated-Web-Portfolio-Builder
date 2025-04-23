@@ -1,9 +1,11 @@
 import { useFieldArray } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import { Trash2 } from "lucide-react";
+
+import RTEditor from "@/components/RTEditor";
+
 import selectStyles from "@/lib/selectStyles";
 import { formatUrl, handleSelectKeyDown } from "@/lib/utils";
-import RTEditor from "@/components/RTEditor";
 
 const ProjectsSection = ({ control, register, setValue, getValues, errors }) => {
   const { fields, append, remove } = useFieldArray({

@@ -1,6 +1,8 @@
-import { currentUser } from "@clerk/nextjs/server";
-import DashboardClient from "./DashboardClient";
 import Link from "next/link";
+import { currentUser } from "@clerk/nextjs/server";
+
+import DashboardClient from "./DashboardClient";
+
 import getPortfolio from "@/lib/getPortfolio";
 
 const DashboardPage = async () => {

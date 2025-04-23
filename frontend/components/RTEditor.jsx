@@ -1,19 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import Document from "@tiptap/extension-document";
-import Text from "@tiptap/extension-text";
-import Paragraph from "@tiptap/extension-paragraph";
-import Bold from "@tiptap/extension-bold";
-import Italic from "@tiptap/extension-italic";
-import Underline from "@tiptap/extension-underline";
-import TextStyle from "@tiptap/extension-text-style";
-import { Color } from "@tiptap/extension-color";
 import { BoldIcon, ItalicIcon, UnderlineIcon } from "lucide-react";
-
 import sanitizeHtml from "sanitize-html";
+import { useEditor, EditorContent } from "@tiptap/react";
+import Bold from "@tiptap/extension-bold";
+import { Color } from "@tiptap/extension-color";
+import Document from "@tiptap/extension-document";
+import Italic from "@tiptap/extension-italic";
+import Paragraph from "@tiptap/extension-paragraph";
+import Text from "@tiptap/extension-text";
+import TextStyle from "@tiptap/extension-text-style";
+import Underline from "@tiptap/extension-underline";
+
 import { Button } from "@/components/ui/button";
+
 import { sanitizeOptions } from "@/lib/utils";
 
 const DEFAULT_COLOR = "#f8fafc";
