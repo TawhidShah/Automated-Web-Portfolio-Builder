@@ -27,7 +27,6 @@ export async function POST(req) {
     });
 
     const result = response.choices[0].message.content;
-    console.log("AI response:", response);
     return NextResponse.json({ text: result }, { status: 200 });
   } catch (error) {}
 }

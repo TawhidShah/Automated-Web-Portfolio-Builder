@@ -68,7 +68,7 @@ const ProfessionalSummarySection = ({ setValue, getValues, errors }) => {
       <AIEnhanceModal
         open={dialogOpen}
         onOpenChange={setDialogOpen}
-        title={"Review AI Suggested Su  mmary"}
+        title={"Review AI Suggested Summary"}
         original={original}
         suggestion={suggestion}
         onAccept={acceptSuggestion}

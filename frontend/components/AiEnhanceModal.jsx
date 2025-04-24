@@ -11,13 +11,13 @@ const AIEnhanceModal = ({ open, onOpenChange, title, original, suggestion, onAcc
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
 
-        {/* <div className="flex max-h-[50vh] flex-col gap-4 overflow-auto"> */}
-        <div className="grid max-h-[60vh] gap-6 overflow-auto md:grid-cols-2 lg:gap-8">
-          <section>
+        <div className="grid max-h-[48vh] gap-6 overflow-auto md:grid-cols-2">
+          <section className="overflow-y-auto rounded-md border bg-gray-800 p-4">
             <h3 className="mb-2 text-lg font-semibold">Original</h3>
             <div dangerouslySetInnerHTML={{ __html: original }} />
           </section>
-          <section>
+
+          <section className="overflow-y-auto rounded-md border bg-gray-800 p-4">
             <h3 className="mb-2 text-lg font-semibold">Suggested</h3>
             <div dangerouslySetInnerHTML={{ __html: suggestion }} />
           </section>
