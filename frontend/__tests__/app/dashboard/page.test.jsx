@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import DashboardPage from "@/app/dashboard/page";
 import { currentUser } from "@clerk/nextjs/server";
@@ -24,12 +24,7 @@ describe("DashboardPage", () => {
   test("renders CreatePortfolioSection if no portfolio exists", async () => {
     getPortfolio.mockResolvedValueOnce(null);
 
-    let pageComponent;
-    await act(async () => {
-      pageComponent = await DashboardPage();
-    });
-
-    render(pageComponent);
+    render(await DashboardPage());
 
     expect(screen.getByText("Welcome to your dashboard John Doe!")).toBeInTheDocument();
     expect(screen.getByText("You haven't created a portfolio yet.")).toBeInTheDocument();
@@ -44,12 +39,7 @@ describe("DashboardPage", () => {
   test("renders DashboardClient if portfolio exists", async () => {
     getPortfolio.mockResolvedValueOnce({ title: "My Portfolio" });
 
-    let pageComponent;
-    await act(async () => {
-      pageComponent = await DashboardPage();
-    });
-
-    render(pageComponent);
+    render(await DashboardPage());
 
     expect(screen.getByText("Welcome to your dashboard John Doe!")).toBeInTheDocument();
     expect(screen.getByText("Dashboard Client Mock")).toBeInTheDocument();

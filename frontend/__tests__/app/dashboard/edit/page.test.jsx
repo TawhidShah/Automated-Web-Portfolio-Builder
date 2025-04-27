@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import EditPortfolioPage from "@/app/dashboard/edit/page";
 import { currentUser } from "@clerk/nextjs/server";
@@ -26,9 +26,7 @@ describe("EditPortfolioPage", () => {
   test("redirects to /dashboard/create if no portfolio exists", async () => {
     getPortfolio.mockResolvedValueOnce(null);
 
-    await act(async () => {
-      await EditPortfolioPage();
-    });
+    await EditPortfolioPage();
 
     expect(redirect).toHaveBeenCalledWith("/dashboard/create");
   });
@@ -36,15 +34,9 @@ describe("EditPortfolioPage", () => {
   test("renders EditPortfolioClient if portfolio exists", async () => {
     getPortfolio.mockResolvedValueOnce({ title: "My Portfolio" });
 
-    let pageComponent;
-    await act(async () => {
-      pageComponent = await EditPortfolioPage();
-    });
-
-    render(pageComponent);
+    render(await EditPortfolioPage());
 
     expect(screen.getByText("Edit Portfolio Client Mock")).toBeInTheDocument();
-
     expect(redirect).not.toHaveBeenCalled();
   });
 });

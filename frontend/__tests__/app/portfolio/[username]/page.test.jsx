@@ -39,9 +39,7 @@ describe("PortfolioPage", () => {
     getPortfolio.mockResolvedValueOnce(null);
     currentUser.mockResolvedValueOnce(null);
 
-    await act(async () => {
-      await PortfolioPage({ params: mockParams });
-    });
+    await PortfolioPage({ params: mockParams });
 
     expect(notFound).toHaveBeenCalled();
   });
@@ -50,9 +48,7 @@ describe("PortfolioPage", () => {
     getPortfolio.mockResolvedValueOnce({ ...mockPortfolio, is_private: true });
     currentUser.mockResolvedValueOnce({ username: "someone_else" });
 
-    await act(async () => {
-      await PortfolioPage({ params: mockParams });
-    });
+    await PortfolioPage({ params: mockParams });
 
     expect(notFound).toHaveBeenCalled();
   });
@@ -61,12 +57,8 @@ describe("PortfolioPage", () => {
     getPortfolio.mockResolvedValueOnce({ ...mockPortfolio, is_private: true });
     currentUser.mockResolvedValueOnce({ username: "john123" });
 
-    let pageComponent;
-    await act(async () => {
-      pageComponent = await PortfolioPage({ params: mockParams });
-    });
+    render(await PortfolioPage({ params: mockParams }));
 
-    render(pageComponent);
     expect(screen.getByText("Template 1 - John Doe")).toBeInTheDocument();
   });
 
@@ -74,12 +66,8 @@ describe("PortfolioPage", () => {
     getPortfolio.mockResolvedValueOnce(mockPortfolio);
     currentUser.mockResolvedValueOnce(null);
 
-    let pageComponent;
-    await act(async () => {
-      pageComponent = await PortfolioPage({ params: mockParams });
-    });
+    render(await PortfolioPage({ params: mockParams }));
 
-    render(pageComponent);
     expect(screen.getByText("Template 1 - John Doe")).toBeInTheDocument();
   });
 
@@ -87,12 +75,8 @@ describe("PortfolioPage", () => {
     getPortfolio.mockResolvedValueOnce({ ...mockPortfolio, template: 99 });
     currentUser.mockResolvedValueOnce(null);
 
-    let pageComponent;
-    await act(async () => {
-      pageComponent = await PortfolioPage({ params: mockParams });
-    });
+    render(await PortfolioPage({ params: mockParams }));
 
-    render(pageComponent);
     expect(screen.getByText("Default Template - John Doe")).toBeInTheDocument();
   });
 });

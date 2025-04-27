@@ -1,4 +1,4 @@
-import { render, screen, act, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import LivePreview from "@/app/live-preview/page";
 import { notFound } from "next/navigation";
 
@@ -46,9 +46,7 @@ describe("LivePreview", () => {
       personal: { name: "John Doe" },
     };
 
-    await act(async () => {
-      window.postMessage({ portfolioData: mockPortfolio }, "*");
-    });
+    window.postMessage({ portfolioData: mockPortfolio }, "*");
 
     await waitFor(() => {
       expect(screen.getByText("Template 1 - John Doe")).toBeInTheDocument();

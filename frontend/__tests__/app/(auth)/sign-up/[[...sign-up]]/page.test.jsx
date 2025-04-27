@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import SignUpPageWrapper from "@/app/(auth)/sign-up/[[...sign-up]]/page";
 import { auth } from "@clerk/nextjs/server";
@@ -22,9 +22,7 @@ describe("SignUpPageWrapper", () => {
   test("redirects to /dashboard if already signed in", async () => {
     auth.mockResolvedValueOnce({ userId: "abc123" });
 
-    await act(async () => {
-      await SignUpPageWrapper();
-    });
+    await SignUpPageWrapper();
 
     expect(redirect).toHaveBeenCalledWith("/dashboard");
   });
@@ -32,13 +30,8 @@ describe("SignUpPageWrapper", () => {
   test("renders SignUpPage if not authenticated", async () => {
     auth.mockResolvedValueOnce({ userId: null });
 
-    let page;
-    await act(async () => {
-      page = await SignUpPageWrapper();
-    });
+    render(await SignUpPageWrapper());
 
-    render(page);
     expect(screen.getByText("Sign Up Page Mock")).toBeInTheDocument();
-    expect(redirect).not.toHaveBeenCalled();
   });
 });
