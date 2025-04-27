@@ -57,7 +57,7 @@ const SignInForm = () => {
           <label htmlFor="email" className="block text-sm font-medium text-primary">
             Email/Username
           </label>
-          <input {...register("identifier")} type="text" placeholder="name@example.com" />
+          <input id="email" {...register("identifier")} type="text" placeholder="name@example.com" />
           {errors.identifier && <p className="ml-1 text-sm text-red-500">{errors.identifier.message}</p>}
         </div>
 
@@ -65,7 +65,7 @@ const SignInForm = () => {
           <label htmlFor="password" className="block text-sm font-medium">
             Password
           </label>
-          <input {...register("password")} type="password" placeholder="••••••••" />
+          <input id="password" {...register("password")} type="password" placeholder="••••••••" />
           {errors.password && <p className="ml-1 text-sm text-red-500">{errors.password.message}</p>}
         </div>
 

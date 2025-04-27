@@ -48,7 +48,7 @@ const ProfessionalSummarySection = ({ setValue, getValues, errors }) => {
       disabled={aiLoading}
       className="rounded border px-2 py-1 text-sm hover:bg-gray-800 disabled:opacity-50"
     >
-      <Sparkles />
+      <Sparkles aria-hidden="true" />
       {aiLoading ? "Improving…" : "Improve with AI"}
     </Button>
   );

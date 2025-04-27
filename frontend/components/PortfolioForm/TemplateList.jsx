@@ -76,6 +76,7 @@ const TemplateList = ({ getValues, setValue, errors }) => {
               <DialogTitle className="text-2xl">Template {previewTemplate} Preview</DialogTitle>
               <div className="flex gap-2">
                 <Button
+                  aria-label="Open template example in new tab"
                   variant="outline"
                   onClick={() => {
                     window.open(`/template/${previewTemplate}`, "_blank");
@@ -84,12 +85,16 @@ const TemplateList = ({ getValues, setValue, errors }) => {
                 >
                   <ExternalLink />
                 </Button>
-                <Button onClick={() => setPreviewTemplate(null)} variant="outline">
+                <Button aria-label="Close template preview" onClick={() => setPreviewTemplate(null)} variant="outline">
                   <X />
                 </Button>
               </div>
             </DialogHeader>
-            <iframe src={`/template/${previewTemplate}`} className="w-full flex-1 rounded-md border" />
+            <iframe
+              title={`Template ${previewTemplate} Preview`}
+              src={`/template/${previewTemplate}`}
+              className="w-full flex-1 rounded-md border"
+            />
           </DialogContent>
         </Dialog>
       )}

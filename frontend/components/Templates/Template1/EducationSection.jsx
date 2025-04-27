@@ -9,7 +9,7 @@ const EducationSection = ({ education }) => {
         {education.map((edu, index) => (
           <div key={index} className="flex flex-col gap-2 rounded-lg border border-gray-700 bg-gray-900 p-6 shadow-md">
             <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
-              <BookOpen size={22} className="text-[#64ffda]" />
+              <BookOpen size={22} className="text-[#64ffda]" aria-hidden="true" />
               {edu.degree}
             </h3>
 
@@ -18,7 +18,7 @@ const EducationSection = ({ education }) => {
             {edu.grade && <p className="text-lg text-gray-400">Grade: {edu.grade}</p>}
 
             <h5 className="flex items-center gap-2 text-sm text-gray-400">
-              <Calendar size={18} />
+              <Calendar size={18} aria-hidden="true" />
               {edu.start_date} - {edu.end_date}
             </h5>
           </div>

@@ -114,6 +114,7 @@ const DashboardClient = ({ portfolio }) => {
           <Button
             variant="outline"
             onClick={copyToClipboard}
+            aria-label="Copy portfolio link"
             className="flex aspect-square items-center gap-2 sm:aspect-auto"
           >
             <Copy className="h-4 w-4" />

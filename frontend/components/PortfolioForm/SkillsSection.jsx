@@ -13,8 +13,11 @@ const SkillsSection = ({ setValue, getValues, errors }) => {
 
   return (
     <div className="my-2 flex flex-col space-y-2 rounded-md border p-4 pb-2">
-      <label className="block">Technical Skills</label>
+      <label htmlFor="technical-skills" className="block">
+        Technical Skills
+      </label>
       <CreatableSelect
+        id="technical-skills"
         styles={selectStyles}
         placeholder="Type to add..."
         isMulti
@@ -30,8 +33,11 @@ const SkillsSection = ({ setValue, getValues, errors }) => {
       />
       {errors?.skills?.technical && <span className="text-sm text-red-500">{errors.skills.technical.message}</span>}
 
-      <label className="mt-4">Soft Skills</label>
+      <label htmlFor="soft skills" className="mt-4">
+        Soft Skills
+      </label>
       <CreatableSelect
+        id="soft-skills"
         styles={selectStyles}
         placeholder="Type to add..."
         isMulti

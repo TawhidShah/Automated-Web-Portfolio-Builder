@@ -42,16 +42,21 @@ const Header = ({ portfolio }) => {
           )}
         </nav>
 
-        <button onClick={() => setMenuOpen(true)} className="md:hidden">
-          <Menu size={30} />
+        {/* Mobile Hamburger Menu Button */}
+        <button onClick={() => setMenuOpen(true)} className="md:hidden" aria-label="Open navigation menu">
+          <Menu size={30} aria-hidden="true" />
         </button>
       </div>
 
       <div
         className={`fixed left-0 top-0 flex h-screen w-screen flex-col items-center justify-center bg-background transition-transform duration-300 ${menuOpen ? "visible opacity-100" : "invisible opacity-0"}`}
       >
-        <button onClick={() => setMenuOpen(false)} className="absolute right-6 top-6">
-          <X size={36} />
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="absolute right-6 top-6"
+          aria-label="Close navigation menu"
+        >
+          <X size={36} aria-hidden="true" />
         </button>
 
         <nav className="flex flex-col gap-6 text-center">

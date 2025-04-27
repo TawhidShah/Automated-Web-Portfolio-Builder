@@ -54,13 +54,14 @@ const EducationSection = ({ register, control, errors }) => {
           </div>
 
           <button
+            aria-label="Remove education"
             className="mx-auto text-white hover:text-gray-500"
             onClick={() => {
               remove(index);
             }}
             type="button"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
       ))}

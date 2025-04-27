@@ -64,7 +64,7 @@ const ProjectsSection = ({ control, register, setValue, getValues, errors }) => 
             disabled={isImproving}
             className="rounded border px-2 py-1 text-sm hover:bg-gray-800 disabled:opacity-50"
           >
-            <Sparkles />
+            <Sparkles aria-hidden="true" />
             {aiLoadingIndex === index ? "Improving…" : "Improve with AI"}
           </Button>
         );
@@ -148,8 +148,13 @@ const ProjectsSection = ({ control, register, setValue, getValues, errors }) => 
               )}
             </label>
 
-            <button className="mx-auto text-white hover:text-gray-500" onClick={() => remove(index)} type="button">
-              <Trash2 className="h-4 w-4" />
+            <button
+              aria-label="Remove project"
+              className="mx-auto text-white hover:text-gray-500"
+              onClick={() => remove(index)}
+              type="button"
+            >
+              <Trash2 className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
         );

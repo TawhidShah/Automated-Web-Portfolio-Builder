@@ -31,7 +31,7 @@ export default function Home() {
         <p className="mb-6 text-gray-300">Watch how easy it is to create a portfolio.</p>
 
         <div className="w-full max-w-3xl">
-          <video autoPlay muted loop playsInline>
+          <video autoPlay muted loop playsInline aria-label="See It In Action Video">
             <source src="/SeeItInAction.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

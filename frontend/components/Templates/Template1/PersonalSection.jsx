@@ -17,7 +17,7 @@ const PersonalSection = ({ personal }) => {
         {personal?.phone && <SocialIcon href={`tel:${personal.phone}`} Icon={Phone} />}
         {personal?.location && (
           <div className="flex items-center gap-1">
-            <MapPin size={28} />
+            <MapPin size={28} aria-hidden="true" />
             <span className="text-sm">{personal.location}</span>
           </div>
         )}
@@ -33,7 +33,7 @@ const SocialIcon = ({ href, text, Icon }) => (
     rel="noopener noreferrer"
     className="flex items-center gap-2 transition duration-300 hover:text-[#64ffda]"
   >
-    <Icon size={28} />
+    <Icon size={28} aria-hidden="true" />
     {text && <span className="hidden sm:block">{text}</span>}
   </a>
 );

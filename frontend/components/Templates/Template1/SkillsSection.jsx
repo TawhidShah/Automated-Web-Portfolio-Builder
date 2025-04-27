@@ -10,7 +10,7 @@ const SkillsSection = ({ skills }) => {
         {technical && technical.length > 0 && (
           <div className="flex flex-col gap-3 rounded-lg border border-gray-700 bg-gray-900 p-6 shadow-md">
             <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
-              <Code size={22} className="text-[#64ffda]" />
+              <Code size={22} className="text-[#64ffda]" aria-hidden="true" />
               Technical Skills
             </h3>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
@@ -29,7 +29,7 @@ const SkillsSection = ({ skills }) => {
         {soft && soft.length > 0 && (
           <div className="flex flex-col gap-3 rounded-lg border border-gray-700 bg-gray-900 p-6 shadow-md">
             <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
-              <Users size={22} className="text-[#64ffda]" />
+              <Users size={22} className="text-[#64ffda]" aria-hidden="true" />
               Soft Skills
             </h3>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">

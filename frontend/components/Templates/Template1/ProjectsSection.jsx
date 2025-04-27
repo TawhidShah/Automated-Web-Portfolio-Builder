@@ -12,7 +12,7 @@ const ProjectsSection = ({ projects }) => {
             className="relative flex flex-col gap-3 rounded-lg border border-gray-700 bg-gray-900 p-6 shadow-md"
           >
             <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
-              <Folder size={22} className="text-[#64ffda]" />
+              <Folder size={22} className="text-[#64ffda]" aria-hidden="true" />
               {project.name}
             </h3>
 
@@ -36,7 +36,7 @@ const ProjectsSection = ({ projects }) => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 transition hover:text-[#64ffda]"
                 >
-                  <Github size={22} />
+                  <Github size={22} aria-hidden="true" />
                   <span className="text-sm">GitHub</span>
                 </a>
               )}
@@ -47,7 +47,7 @@ const ProjectsSection = ({ projects }) => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 transition hover:text-[#64ffda]"
                 >
-                  <ExternalLink size={22} />
+                  <ExternalLink size={22} aria-hidden="true" />
                   <span className="text-sm">Live Demo</span>
                 </a>
               )}

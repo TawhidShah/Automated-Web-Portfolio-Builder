@@ -60,7 +60,7 @@ const ExperienceSection = ({ control, register, setValue, getValues, errors }) =
             disabled={isImproving}
             className="rounded border px-2 py-1 text-sm hover:bg-gray-800 disabled:opacity-50"
           >
-            <Sparkles />
+            <Sparkles aria-hidden="true" />
             {aiLoadingIndex === index ? "Improving…" : "Improve with AI"}
           </Button>
         );
@@ -116,8 +116,12 @@ const ExperienceSection = ({ control, register, setValue, getValues, errors }) =
               <span className="text-sm text-red-500">{errors.experience[index].description.message}</span>
             )}
 
-            <button className="mx-auto text-white hover:text-gray-600" onClick={() => remove(index)}>
-              <Trash2 className="h-4 w-4" />
+            <button
+              aria-label="Remove experience"
+              className="mx-auto text-white hover:text-gray-600"
+              onClick={() => remove(index)}
+            >
+              <Trash2 className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
         );

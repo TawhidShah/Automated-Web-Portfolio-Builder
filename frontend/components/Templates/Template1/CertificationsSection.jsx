@@ -12,7 +12,7 @@ const CertificationsSection = ({ certifications }) => {
             className="relative flex flex-col gap-3 rounded-lg border border-gray-700 bg-gray-900 p-6 shadow-md transition hover:scale-[102%] hover:shadow-lg"
           >
             <h3 className="flex items-center gap-2 text-2xl font-semibold text-white">
-              <Award size={28} className="text-[#64ffda]" />
+              <Award size={28} className="text-[#64ffda]" aria-hidden="true" />
               {cert.name}
             </h3>
 
@@ -20,7 +20,7 @@ const CertificationsSection = ({ certifications }) => {
 
             {cert.date && (
               <h5 className="flex items-center gap-2 text-sm text-gray-400">
-                <Calendar size={18} />
+                <Calendar size={18} aria-hidden="true" />
                 {cert.date}
               </h5>
             )}
