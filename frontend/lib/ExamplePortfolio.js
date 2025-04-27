@@ -38,7 +38,8 @@ const ExamplePortfolio = {
       name: "Portfolio Builder",
       description: "A web application that helps users create personal portfolios.",
       technologies: ["React", "Next.js", "MongoDB"],
-      url: "https:www.google.com",
+      url: "https://www.google.com",
+      repo: "https://www.github.com",
     },
   ],
   certifications: [

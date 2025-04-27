@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,9 +21,10 @@ const Template2 = ({ portfolio }) => {
             <div>
               {personal.job_title && <p>Job Title: {personal.job_title}</p>}
               {personal.email && <p>Email: {personal.email}</p>}
-              {personal.location && <p>Location: {personal.location}</p>}
-              {personal.linkedin && <p>LinkedIn: {personal.linkedin}</p>}
+              {personal.phone && <p>Phone: {personal.phone}</p>}
               {personal.github && <p>GitHub: {personal.github}</p>}
+              {personal.linkedin && <p>LinkedIn: {personal.linkedin}</p>}
+              {personal.location && <p>Location: {personal.location}</p>}
             </div>
           </div>
         </section>
@@ -58,19 +57,18 @@ const Template2 = ({ portfolio }) => {
         {experience && (
           <section id="experience" className="space-y-4">
             <h2 className="text-2xl font-semibold">Experience</h2>
-            {experience?.map((job, index) => (
+            {experience?.map((exp, index) => (
               <Card key={index}>
                 <CardContent className="p-4">
-                  <h3 className="font-semibold">{job.title}</h3>
-                  <p>{job.company}</p>
+                  <h3 className="font-semibold">{exp.title}</h3>
+                  <p>{exp.company}</p>
                   <p>
-                    {job.start_date} - {job.end_date}
+                    {exp.start_date} - {exp.end_date}
                   </p>
-                  <ul className="mt-2 list-inside list-disc">
-                    {job.responsibilities?.map((resp, i) => (
-                      <li key={i}>{resp}</li>
-                    ))}
-                  </ul>
+                  <div
+                    className="mt-3 flex flex-col gap-2 text-gray-300"
+                    dangerouslySetInnerHTML={{ __html: exp.description }}
+                  />
                 </CardContent>
               </Card>
             ))}
@@ -107,22 +105,22 @@ const Template2 = ({ portfolio }) => {
                         <Badge key={i}>{tech}</Badge>
                       ))}
                     </div>
-
-                    {project.url ? (
-                      <Button className="mt-2" variant="outline" asChild>
-                        <Link
-                          href={project.url.startsWith("http") ? project.url : `https://${project.url}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Project
-                        </Link>
-                      </Button>
-                    ) : (
-                      <Button className="mt-2" variant="outline" disabled>
-                        View Project
-                      </Button>
-                    )}
+                    <div className="mt-2 flex items-center justify-center gap-4">
+                      {project.repo && (
+                        <Button className="flex-1" variant="outline" asChild>
+                          <a href={project.repo} target="_blank" rel="noopener noreferrer">
+                            <span className="text-sm">GitHub</span>
+                          </a>
+                        </Button>
+                      )}
+                      {project.url && (
+                        <Button className="flex-1" variant="outline" asChild>
+                          <a href={project.url} target="_blank" rel="noopener noreferrer">
+                            <span className="text-sm">Live Demo</span>
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               ))}
